@@ -1,22 +1,43 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const modelo1Schema = new mongoose.Schema({
-  direccion: String, 
-  anfitrion: String ,
-  descripcion: String,
-  inicio: Date,
-  duracion : Number,
-  invitados: [],  
-  mensajes: [{
-      emisor: String,
-      receptor: String,
-      fecha: {
-        type: Date,
-        default: Date.now,
-      }
-  }]
-  
+  nombre: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  timestamp: {
+    type: Date,
+    required: true,
+  },
+  lugar: {
+    direccion: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lat: {
+      type: Number,
+      required: true,
+    },
+    lon: {
+      type: Number,
+      required: true,
+    },
+  },
+  organizador: {
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  imagen: {
+    type: String, // Puedes cambiar el tipo a Buffer si deseas almacenar la imagen directamente en la base de datos.
+    required: true,
+  },
 });
 
-const evento = mongoose.model("modelo", modelo1Schema);
-module.exports = evento;
+
+const modelo = mongoose.model("modelo", modelo1Schema);
+module.exports = modelo;

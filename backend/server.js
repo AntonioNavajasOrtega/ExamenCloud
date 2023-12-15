@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const colors = require("picocolors");
-const modelo1 = require("./rutas/modelo1");
+
 const authRouter = require("./rutas/auth.js");
 
 
@@ -15,7 +15,7 @@ app.use(cors({
   origin: allowedOrigins,
   credentials: true
 }));
-app.use("/modelo1", modelo1);
+
 app.use("/auth", authRouter);
 
 

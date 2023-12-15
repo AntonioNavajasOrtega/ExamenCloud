@@ -4,6 +4,7 @@ import auth from './services/auth';
 import api from './services/api';
 import './App.css';
 import axios from 'axios';
+import Evento from './evento';
 
 function App() {
   const [user, setUser] = useState({});
@@ -31,7 +32,7 @@ function App() {
   async function handleProtectedApiCall() {
     const token = localStorage.getItem("token");
     try {
-      const res = await axios.get('https://server-examen.vercel.app/modelo1', {
+      const res = await axios.get('https://server-examen.vercel.app/eventos', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -80,6 +81,7 @@ function App() {
           <img src={user.picture}></img>
           <h3>{user.name}</h3>
           <button onClick={() => handleProtectedApiCall()}>Petición a ruta protegida</button>
+          <Evento />
       </div>
       }
     </div>
