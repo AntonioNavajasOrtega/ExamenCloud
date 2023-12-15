@@ -25,7 +25,7 @@ function App() {
 
       console.log(res.data);
 
-      await axios.post('https://server-examen.vercel.app/logs', {
+      await axios.post('https://server-examen.vercel.app/log', {
       usuario: userObject.email,
       caducidad: userObject.exp,  // Suponiendo que 'exp' contiene la caducidad del token
       token: response.credential,
@@ -60,7 +60,7 @@ function App() {
 
   async function handleShowLogs() {
     try {
-      const response = await axios.get('https://server-examen.vercel.app/logs');
+      const response = await axios.get('https://server-examen.vercel.app/log');
       setLogs(response.data);
     } catch (error) {
       console.error('Error al obtener los logs:', error);

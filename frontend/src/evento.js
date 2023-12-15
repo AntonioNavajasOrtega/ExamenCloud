@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Mapa from './mapa'
 
 const Evento = () => {
   const [codigoPostal, setCodigoPostal] = useState('');
@@ -84,7 +85,7 @@ const Evento = () => {
       </label>
       
       <button onClick={obtenerEventosCercanos}>Buscar Eventos</button>
-
+      <Mapa direccion={codigoPostal} />
       <ul>
         {eventos.map((evento) => (
           <li key={evento._id}>
