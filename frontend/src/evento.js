@@ -2,14 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Evento = () => {
-  const [direccion, setDireccion] = useState('');
+  const [codigoPostal, setCodigoPostal] = useState('');
   const [eventos, setEventos] = useState([]);
   const [detalleEvento, setDetalleEvento] = useState(null);
 
   const obtenerEventosCercanos = async () => {
     try {
-      const response = await axios.get(`https://server-examen.vercel.app/eventos/cercanos?direccion=${direccion}`);
-      setEventos(response.data);
+      // Obtener las coordenadas directamente desde la dirección postal
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(codigoPostal)}`);
+      
+      if (response.data.length > 0) {
+        const coordenadas = {
+          lat: parseFloat(response.data[0].lat),
+          lon: parseFloat(response.data[0].lon),
+        };
+  
+        // Realizar la solicitud con las coordenadas obtenidas
+        const eventosResponse = await axios.get(`https://server-examen.vercel.app/eventos?lat=${coordenadas.lat}&lon=${coordenadas.lon}`);
+        setEventos(eventosResponse.data);
+      } else {
+        console.error('No se encontraron coordenadas para la dirección proporcionada');
+      }
     } catch (error) {
       console.error('Error al obtener eventos cercanos', error);
     }
@@ -60,15 +73,16 @@ const Evento = () => {
 
   useEffect(() => {
     obtenerEventosCercanos();
-  }, [direccion]);
+  }, [codigoPostal]);
 
   return (
     <div>
       <h2>Eventos Cercanos</h2>
       <label>
-        Dirección Postal:
-        <input type="text" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+        Código Postal:
+        <input type="text" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
       </label>
+      
       <button onClick={obtenerEventosCercanos}>Buscar Eventos</button>
 
       <ul>

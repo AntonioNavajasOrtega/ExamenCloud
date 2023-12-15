@@ -1,13 +1,19 @@
 // eventosController.js
-const Modelo1 = require('./modelo1'); // Asegúrate de tener la ruta correcta al modelo
+const Modelo1 = require('../modelos/modelo1'); // Asegúrate de tener la ruta correcta al modelo
+
 
 // Obtener eventos próximos
 exports.obtenerEventosProximos = async (req, res) => {
   try {
     const { lat, lon } = req.query;
+
+    // Convertir las coordenadas de cadena a números
+    const latitud = parseFloat(lat);
+    const longitud = parseFloat(lon);
+
     const eventosProximos = await Modelo1.find({
-      'lugar.lat': { $lte: lat + 0.2, $gte: lat - 0.2 },
-      'lugar.lon': { $lte: lon + 0.2, $gte: lon - 0.2 },
+      'lugar.lat': { $lte: latitud + 0.2, $gte: latitud - 0.2 },
+      'lugar.lon': { $lte: longitud + 0.2, $gte: longitud - 0.2 },
     }).sort({ timestamp: 1 });
 
     res.json(eventosProximos);

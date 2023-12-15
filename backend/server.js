@@ -4,6 +4,7 @@ const cors = require("cors");
 const colors = require("picocolors");
 
 const authRouter = require("./rutas/auth.js");
+const eventos = require("./rutas/modelo1.js")
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors({
 }));
 
 app.use("/auth", authRouter);
+app.use("/eventos",eventos)
 
 
 app.listen(PORT, () => {
