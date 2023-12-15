@@ -10,7 +10,11 @@ const app = express();
 const PORT = 5000;
 app.use(cors());
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:3000', credentials: true}));
+const allowedOrigins = ['http://localhost:3000', 'https://cliente-examen.vercel.app'];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use("/modelo1", modelo1);
 app.use("/auth", authRouter);
 

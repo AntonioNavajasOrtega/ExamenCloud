@@ -17,7 +17,7 @@ function App() {
     document.getElementById("signInDiv").hidden = true;
 
     try {
-      const res = await axios.post('http://localhost:5000/auth/logged', {
+      const res = await axios.post('https://server-examen.vercel.app/auth/logged', {
           token: response.credential, 
         });
 
@@ -31,7 +31,7 @@ function App() {
   async function handleProtectedApiCall() {
     const token = localStorage.getItem("token");
     try {
-      const res = await axios.get('http://localhost:5000/modelo1', {
+      const res = await axios.get('https://server-examen.vercel.app/modelo1', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
