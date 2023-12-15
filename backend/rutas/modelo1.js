@@ -3,7 +3,7 @@ const router = express.Router();
 
 const modelo1Controller = require("../controllers/modelo1Controller");
 
-const verifyTokenMiddleware = require("../rutas/middleware");
+const verifyTokenMiddleware = require("./middleware");
 
 router.use(verifyTokenMiddleware)
 

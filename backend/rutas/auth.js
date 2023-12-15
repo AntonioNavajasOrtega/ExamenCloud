@@ -5,7 +5,7 @@ const { OAuth2Client } = require('google-auth-library');
 
 const client = new OAuth2Client("934310162741-e74bp9o07ua6kiit7kgeu0qfinljc8oh.apps.googleusercontent.com");
 
-router.post("logged", async (req,res) => {
+router.post("/logged", async (req,res) => {
     console.log("Solicitud recibida en auth/logged")
     const { token } = req.body;
     try {
