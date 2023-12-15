@@ -5,6 +5,7 @@ const colors = require("picocolors");
 
 const authRouter = require("./rutas/auth.js");
 const eventos = require("./rutas/modelo1.js")
+const logs = require("./rutas/logs.js")
 
 
 const app = express();
@@ -19,7 +20,7 @@ app.use(cors({
 
 app.use("/auth", authRouter);
 app.use("/eventos",eventos)
-
+app.use("/log",logs)
 
 app.listen(PORT, () => {
   console.log(colors.bgGreen(`Server is running on port ${PORT}`));

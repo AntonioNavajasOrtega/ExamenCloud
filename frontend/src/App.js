@@ -8,6 +8,7 @@ import Evento from './evento';
 
 function App() {
   const [user, setUser] = useState({});
+  const [logs, setLogs] = useState([]);
 
  async function handleCallbackResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
@@ -23,6 +24,12 @@ function App() {
         });
 
       console.log(res.data);
+
+      await axios.post('https://server-examen.vercel.app/logs', {
+      usuario: userObject.email,
+      caducidad: userObject.exp,  // Suponiendo que 'exp' contiene la caducidad del token
+      token: response.credential,
+    });
     }
     catch(error){
       console.log("Error al enviar token al backend")
@@ -49,6 +56,15 @@ function App() {
     localStorage.removeItem("token")
     setUser({});
     document.getElementById("signInDiv").hidden = false;
+  }
+
+  async function handleShowLogs() {
+    try {
+      const response = await axios.get('https://server-examen.vercel.app/logs');
+      setLogs(response.data);
+    } catch (error) {
+      console.error('Error al obtener los logs:', error);
+    }
   }
 
   useEffect(() => {
@@ -84,6 +100,20 @@ function App() {
           <Evento />
       </div>
       }
+
+<button onClick={handleShowLogs}>Mostrar Logs</button>
+      {logs.length > 0 && (
+        <div>
+          <h3>Logs</h3>
+          <ul>
+            {logs.map((log, index) => (
+              <li key={index}>
+                {`Timestamp: ${log.timestamp}, Usuario: ${log.usuario}, Caducidad: ${log.caducidad}, Token: ${log.token}, Acción: ${log.accion}`}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
