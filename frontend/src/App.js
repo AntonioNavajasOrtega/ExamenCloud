@@ -24,8 +24,11 @@ function App() {
         });
 
       console.log(res.data);
-
+      const token = localStorage.getItem("token");
       await axios.post('https://server-examen.vercel.app/log', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       usuario: userObject.email,
       caducidad: userObject.exp,  // Suponiendo que 'exp' contiene la caducidad del token
       token: response.credential,
@@ -60,7 +63,12 @@ function App() {
 
   async function handleShowLogs() {
     try {
-      const response = await axios.get('https://server-examen.vercel.app/log');
+      const token = localStorage.getItem("token");
+      const response = await axios.get('https://server-examen.vercel.app/log', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
       setLogs(response.data);
     } catch (error) {
       console.error('Error al obtener los logs:', error);
@@ -108,7 +116,7 @@ function App() {
           <ul>
             {logs.map((log, index) => (
               <li key={index}>
-                {`Timestamp: ${log.timestamp}, Usuario: ${log.usuario}, Caducidad: ${log.caducidad}, Token: ${log.token}, Acción: ${log.accion}`}
+                {`Timestamp: ${log.timestamp}, Usuario: ${log.usuario}, Caducidad: ${log.caducidad}, Token: ${log.token}`}
               </li>
             ))}
           </ul>
