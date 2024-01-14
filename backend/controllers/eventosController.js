@@ -1,6 +1,10 @@
 // eventosController.js
 const Modelo1 = require('../modelos/modelo1'); // Asegúrate de tener la ruta correcta al modelo
+const express = require('express');
+const router = express.Router();
+const verifyTokenMiddleware = require("../rutas/middleware")
 
+router.use(verifyTokenMiddleware);
 
 // Obtener eventos próximos
 exports.obtenerEventosProximos = async (req, res) => {

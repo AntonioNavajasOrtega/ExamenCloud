@@ -1,3 +1,0 @@
-Timestamp: 2023-12-15T12:34:56.789Z, Usuario: usuarioEjemplo1, Caducidad: 2023-12-16T12:34:56.789Z, Token: abc123xyz
-Timestamp: 2023-12-15T13:45:30.456Z, Usuario: usuarioEjemplo2, Caducidad: 2023-12-17T13:45:30.456Z, Token: def456uvw
-Timestamp: 2023-12-15T15:20:10.123Z, Usuario: usuarioEjemplo3, Caducidad: 2023-12-18T15:20:10.123Z, Token: hij789rst

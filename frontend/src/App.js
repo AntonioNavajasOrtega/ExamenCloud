@@ -25,14 +25,6 @@ function App() {
 
       console.log(res.data);
       const token = localStorage.getItem("token");
-      await axios.post('https://server-examen.vercel.app/log', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      usuario: userObject.email,
-      caducidad: userObject.exp,  // Suponiendo que 'exp' contiene la caducidad del token
-      token: response.credential,
-    });
     }
     catch(error){
       console.log("Error al enviar token al backend")
