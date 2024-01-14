@@ -48,7 +48,9 @@ function App() {
           'Authorization': `Bearer ${token}`,
         },
       });
-      setLogs(response.data);
+      const sortedLogs = response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        setLogs(sortedLogs);
+      
     } catch (error) {
       console.error('Error al obtener los logs:', error);
     }
