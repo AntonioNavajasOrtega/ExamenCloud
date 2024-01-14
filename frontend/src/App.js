@@ -31,19 +31,6 @@ function App() {
     }
   }
 
-  async function handleProtectedApiCall() {
-    const token = localStorage.getItem("token");
-    try {
-      const res = await axios.get('https://server-examen.vercel.app/eventos', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-      console.log(res.data)
-    } catch (error) {
-      console.log("error al pedir las entidades")
-    }
-  }
 
   function handleSignOut(e) {
     e.preventDefault();
@@ -56,7 +43,7 @@ function App() {
   async function handleShowLogs() {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get('https://server-examen.vercel.app/log', {
+      const response = await axios.get('https://server-examen.vercel.app/logs', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -96,7 +83,6 @@ function App() {
       <div>
           <img src={user.picture}></img>
           <h3>{user.name}</h3>
-          <button onClick={() => handleProtectedApiCall()}>Petición a ruta protegida</button>
           <Evento />
       </div>
       }
