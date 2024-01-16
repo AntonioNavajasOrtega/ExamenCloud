@@ -20,7 +20,7 @@ const CloudinaryUploader = ( ) => {
     try {
       const formData = new FormData();
       formData.append('file', selectedFile);
-      
+      formData.append("upload_preset", "examen");
 
       const response = await axios.post(
         'https://api.cloudinary.com/v1_1/dwhe8hrlr/image/upload',
