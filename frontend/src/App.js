@@ -39,6 +39,8 @@ function App() {
     localStorage.removeItem("token")
     setUser({});
     document.getElementById("signInDiv").hidden = false;
+
+    window.location.reload();
   }
 
   async function handleShowLogs() {
