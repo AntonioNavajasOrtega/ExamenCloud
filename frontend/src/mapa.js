@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import axios from 'axios';
+import { PunteroMapa } from "./PunteroMapa";
 import 'leaflet/dist/leaflet.css';
 
 const Mapa = ({ direccion }) => {
@@ -32,7 +33,7 @@ const Mapa = ({ direccion }) => {
       {!loading && (
         <MapContainer center={coordinates} zoom={11} style={{ height: '100%', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={coordinates}></Marker>
+          <Marker icon={PunteroMapa} position={coordinates}></Marker>
         </MapContainer>
       )}
     </div>

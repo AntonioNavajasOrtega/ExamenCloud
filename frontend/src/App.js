@@ -5,6 +5,7 @@ import api from './services/api';
 import './App.css';
 import axios from 'axios';
 import Evento from './evento';
+import CloudinaryUploader from './CloudinaryUploader';
 
 function App() {
   const [user, setUser] = useState({});
@@ -86,6 +87,7 @@ function App() {
           <img src={user.picture}></img>
           <h3>{user.name}</h3>
           <Evento />
+          <CloudinaryUploader />
       </div>
       }
 

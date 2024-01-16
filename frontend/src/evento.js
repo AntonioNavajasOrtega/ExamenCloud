@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Mapa from './mapa'
 
+
 const Evento = () => {
-  const [codigoPostal, setCodigoPostal] = useState('');
+  const [codigoPostal, setCodigoPostal] = useState('28001');
   const [eventos, setEventos] = useState([]);
   const [detalleEvento, setDetalleEvento] = useState(null);
 
