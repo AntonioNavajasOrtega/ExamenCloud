@@ -40,7 +40,9 @@ function App() {
     setUser({});
     document.getElementById("signInDiv").hidden = false;
 
-    window.location.href = window.location.href;
+    window.location.href = window.location.href + '?reload=' + new Date().getTime();
+    window.location.reload(true);
+
   }
 
   async function handleShowLogs() {
