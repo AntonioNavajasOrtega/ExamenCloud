@@ -79,7 +79,7 @@ function App() {
 
   return (
     <div className="App">
-      {!user && <div id="signInDiv"></div>}
+      { Object.keys(user).length == 0 && <div id="signInDiv"></div>}
       { Object.keys(user).length != 0 && <button onClick={(e) => handleSignOut(e)}>Sign Out</button> }
      
       {user && 
