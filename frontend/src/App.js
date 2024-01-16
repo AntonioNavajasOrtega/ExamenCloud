@@ -40,8 +40,10 @@ function App() {
     setUser({});
     document.getElementById("signInDiv").hidden = false;
 
-    window.location.href = window.location.href + '?reload=' + new Date().getTime();
-    window.location.reload(true);
+    setTimeout(()=>{
+      window.location.reload(true);
+    });
+    window.history.go(0);
 
   }
 
