@@ -40,11 +40,6 @@ function App() {
     setUser({});
     document.getElementById("signInDiv").hidden = false;
 
-    setTimeout(()=>{
-      window.location.reload(true);
-    });
-    window.history.go(0);
-
   }
 
   async function handleShowLogs() {
@@ -85,7 +80,7 @@ function App() {
 
   return (
     <div className="App">
-      { Object.keys(user).length == 0 && <div id="signInDiv"></div>}
+      { localStorage.getItem("token") && <div id="signInDiv"></div>}
       { Object.keys(user).length != 0 && <button onClick={(e) => handleSignOut(e)}>Sign Out</button> }
      
       {user && 
