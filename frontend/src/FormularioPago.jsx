@@ -5,9 +5,11 @@ import Mapa from './mapa'
 
 const FormularioPago = ({ userEmail }) => {
   const [nuevoPago, setNuevoPago] = useState({
+    timestamp: new Date().toISOString,
     concepto: '',
     importe: '',
     email: userEmail,
+    token: localStorage.getItem("token"),
     imageUrl: '',
     direccion: '',
   });

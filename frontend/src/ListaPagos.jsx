@@ -30,23 +30,21 @@ const usuariosDistintos = [...new Set(pagos.map(pago => pago.email))];
 const importePorUsuario = importeTotal / usuariosDistintos.length;
 
 // Paso 4: Calcular el saldo del usuario
-
 const importeUsuario = pagos
   .filter(pago => pago.email === userEmail)
   .reduce((total, pago) => total + parseFloat(pago.importe), 0);
 
 const saldoUsuario = importeUsuario - importePorUsuario;
 setSaldo(saldoUsuario)
+console.log(importeUsuario)
+console.log(importePorUsuario)
 console.log(`Saldo del usuario ${userEmail}: ${saldoUsuario}`);
-
-
       } catch (error) {
         console.error('Error al obtener los pagos:', error);
       }
     };
-
     fetchData();
-  }, []);
+  }, [userEmail,pagos]);
 
   const handleDeletePago = async (id) => {
     try {
