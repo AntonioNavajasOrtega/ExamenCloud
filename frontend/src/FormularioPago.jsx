@@ -73,6 +73,17 @@ const FormularioPago = ({ userEmail }) => {
     console.error('Error al crear el pago', error);
 });
 
+setNuevoPago({
+    timestamp: new Date(),
+    concepto: '',
+    importe: '',
+    email: userEmail,
+    token: localStorage.getItem("token"),
+    imageUrl: '',
+    direccion: '',
+  });
+  setImage(null);
+
   };
 
   return (
