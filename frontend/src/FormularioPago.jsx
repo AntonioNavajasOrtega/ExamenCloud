@@ -58,8 +58,7 @@ const FormularioPago = ({ userEmail }) => {
     // Realiza la solicitud HTTP para guardar el nuevo pago
     axios.post('https://server-examen.vercel.app/pagos', nuevoPago, {
     headers: {
-        'Authorization': `Bearer ${token}`, // Asegúrate de tener el token definido antes de esta línea
-        'Content-Type': 'application/json', // Especifica el tipo de contenido si es necesario
+        'Authorization': `Bearer ${token}`, // Asegúrate de tener el token definido antes de esta línea 
     },
 })
 .then(response => {
