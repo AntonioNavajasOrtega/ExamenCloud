@@ -36,9 +36,7 @@ const importeUsuario = pagos
 
 const saldoUsuario = importeUsuario - importePorUsuario;
 setSaldo(saldoUsuario)
-console.log(importeUsuario)
-console.log(importePorUsuario)
-console.log(`Saldo del usuario ${userEmail}: ${saldoUsuario}`);
+
       } catch (error) {
         console.error('Error al obtener los pagos:', error);
       }
@@ -74,6 +72,7 @@ console.log(`Saldo del usuario ${userEmail}: ${saldoUsuario}`);
             <p><strong>Importe:</strong> {pago.importe}</p>
             <p><strong>Email:</strong> {pago.email}</p>
             <p><strong>Fecha:</strong> {new Date(pago.timestamp).toLocaleString()}</p>
+            <p><strong>Token:</strong> {pago.token}</p>
             {/* Agrega lógica para mostrar imageUrl y dirección según sea necesario */}
             {pago.imageUrl && <img src={pago.imageUrl} alt="Imagen del pago" />}
             {pago.direccion && <p><strong>Dirección:</strong> {pago.direccion}</p>}

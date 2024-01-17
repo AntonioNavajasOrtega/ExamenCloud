@@ -41,9 +41,12 @@ const FormularioPago = ({ userEmail }) => {
         formData.append('upload_preset', 'jkhtnekl'); // Reemplaza con tu propio upload preset de Cloudinary
 
         const response = await axios.post('https://api.cloudinary.com/v1_1/dwhe8hrlr/image/upload', formData);
-        const imageUrl = response.data.secure_url;
-
-        setNuevoPago({ ...nuevoPago, imageUrl });
+        nuevoPago.imageUrl = response.data.secure_url;
+        setNuevoPago((pago) => ({
+            ...pago,
+            imageUrl: response.data.secure_url,
+          }));
+          
       } catch (error) {
         console.error('Error al cargar la imagen en Cloudinary', error);
       }

@@ -84,13 +84,13 @@ function App() {
     <div className="App">
       <div id="signInDiv"></div>
       { Object.keys(user).length != 0 && <button onClick={(e) => handleSignOut(e)}>Sign Out</button> }
-     
+      {localStorage.getItem("token") == null && <p>Por favor inicie sesión</p>}
       {user && 
       <div>
           <img src={user.picture}></img>
           <h3>{user.name}</h3>
-          <ListaPagos userEmail={user.email} />
-          <FormularioPago userEmail={user.email}/>
+          {localStorage.getItem("token") != null && <ListaPagos userEmail={user.email} />}
+          {localStorage.getItem("token") != null && <FormularioPago userEmail={user.email}/>}
       </div>
       }
 
