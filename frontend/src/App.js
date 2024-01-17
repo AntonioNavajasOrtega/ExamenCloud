@@ -6,6 +6,8 @@ import './App.css';
 import axios from 'axios';
 import Evento from './evento';
 import CloudinaryUploader from './CloudinaryUploader';
+import ListaPagos from './ListaPagos';
+import FormularioPago from './FormularioPago';
 
 function App() {
   const [user, setUser] = useState({});
@@ -87,24 +89,12 @@ function App() {
       <div>
           <img src={user.picture}></img>
           <h3>{user.name}</h3>
-          <Evento />
-          <CloudinaryUploader />
+          <ListaPagos userEmail={user.email} />
+          <FormularioPago userEmail={user.email}/>
       </div>
       }
 
-<button onClick={handleShowLogs}>Mostrar Logs</button>
-      {logs.length > 0 && (
-        <div>
-          <h3>Logs</h3>
-          <ul>
-            {logs.map((log, index) => (
-              <li key={index}>
-                {`Timestamp: ${log.timestamp}, Usuario: ${log.usuario}, Caducidad: ${log.caducidad}, Token: ${log.token}`}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+
     </div>
   );
 }
