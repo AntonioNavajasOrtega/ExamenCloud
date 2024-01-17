@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Mapa from './mapa'
 
 const ListaPagos = ({ userEmail }) => {
   const [pagos, setPagos] = useState([]);
@@ -76,6 +77,7 @@ setSaldo(saldoUsuario)
             {/* Agrega lógica para mostrar imageUrl y dirección según sea necesario */}
             {pago.imageUrl && <img src={pago.imageUrl} alt="Imagen del pago" />}
             {pago.direccion && <p><strong>Dirección:</strong> {pago.direccion}</p>}
+            <Mapa direccion={pago.direccion}></Mapa>
             {pago.email === userEmail && (
               <button onClick={() => handleDeletePago(pago._id)}>Borrar Pago</button>
             )}
