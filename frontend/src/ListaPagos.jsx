@@ -18,13 +18,28 @@ const ListaPagos = ({ userEmail }) => {
         const sortedPagos = response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         setPagos(sortedPagos);
 
-        // Calcular el saldo
-        const totalImporte = sortedPagos.reduce((total, pago) => total + parseFloat(pago.importe), 0);
-        const saldoUsuario = sortedPagos
-          .filter(pago => pago.email === userEmail)
-          .reduce((total, pago) => total + parseFloat(pago.importe), 0);
+        const pagos = sortedPagos;
 
-        setSaldo(totalImporte - saldoUsuario);
+// Paso 1: Calcular el importe total de todos los pagos
+const importeTotal = pagos.reduce((total, pago) => total + parseFloat(pago.importe), 0);
+
+// Paso 2: Obtener la lista de usuarios distintos
+const usuariosDistintos = [...new Set(pagos.map(pago => pago.email))];
+
+// Paso 3: Calcular el importe total dividido por el número de usuarios distintos
+const importePorUsuario = importeTotal / usuariosDistintos.length;
+
+// Paso 4: Calcular el saldo del usuario
+
+const importeUsuario = pagos
+  .filter(pago => pago.email === userEmail)
+  .reduce((total, pago) => total + parseFloat(pago.importe), 0);
+
+const saldoUsuario = importeUsuario - importePorUsuario;
+setSaldo(saldoUsuario)
+console.log(`Saldo del usuario ${userEmail}: ${saldoUsuario}`);
+
+
       } catch (error) {
         console.error('Error al obtener los pagos:', error);
       }
