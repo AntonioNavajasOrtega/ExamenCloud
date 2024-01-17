@@ -5,7 +5,7 @@ import Mapa from './mapa'
 
 const FormularioPago = ({ userEmail }) => {
   const [nuevoPago, setNuevoPago] = useState({
-    timestamp: new Date().toISOString,
+    timestamp: new Date(),
     concepto: '',
     importe: '',
     email: userEmail,
