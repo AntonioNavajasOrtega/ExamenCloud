@@ -119,9 +119,7 @@ const FormularioPago = ({ userEmail }) => {
           />
           {image && (
             <div>
-              <Image cloudName="jkhtnekl" publicId={image} width="100" height="100">
-                <Transformation width="100" height="100" crop="fill" />
-              </Image>
+              <img src={image} alt="Imagen del pago" />
             </div>
           )}
         </div>
